@@ -30,7 +30,7 @@
 	"license": "SEE LICENSE IN 'LICENSE'",
 	"icon": "resources/icon.png",
 	"engines": {
-		"vscode": "^1.38.0"
+		"vscode": "^1.73.0"
 	},
 	"extensionKind": [
 		"workspace"
@@ -1515,6 +1515,7 @@
 		"vscode:prepublish": "npm run compile",
 		"vscode:uninstall": "node ./out/life-cycle/uninstall.js",
 		"clean": "node ./.vscode/clean.js",
+		"i18n": "npx i18next-scanner --config i18n/i18next-scanner.config.js",
 		"compile": "npm run lint && npm run clean && npm run compile-src && npm run compile-web",
 		"compile-src": "tsc -p ./src && node ./.vscode/package-src.js",
 		"compile-web": "tsc -p ./web && node ./.vscode/package-web.js",
@@ -1526,15 +1527,19 @@
 		"test-and-report-coverage": "jest --verbose --coverage"
 	},
 	"dependencies": {
+		"i18next": "^21.10.0",
 		"iconv-lite": "0.5.0"
 	},
 	"devDependencies": {
+		"@types/babel__traverse": "^7.14.2",
 		"@types/jest": "26.0.19",
 		"@types/node": "8.10.62",
-		"@types/vscode": "1.38.0",
+		"@types/prettier": "^2.1.5",
+		"@types/vscode": "1.73.0",
 		"@typescript-eslint/eslint-plugin": "4.10.0",
 		"@typescript-eslint/parser": "4.10.0",
 		"eslint": "7.15.0",
+		"i18next-scanner": "^4.5.0",
 		"jest": "26.6.3",
 		"ts-jest": "26.4.4",
 		"typescript": "4.0.2",

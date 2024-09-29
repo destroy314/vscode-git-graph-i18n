@@ -15,6 +15,22 @@ const OUTPUT_TMP_JS_FILE = 'out.tmp.js';
 
 const DEBUG = process.argv.length > 2 && process.argv[2] === 'debug';
 
+const I18N_DIRECTORY = './i18n';
+const I18NEXT_FILE = './node_modules/i18next/dist/umd/i18next.min.js';
+const filesToCopy = [
+    { src: path.join(I18N_DIRECTORY, 'en.json'), dest: path.join(MEDIA_DIRECTORY, 'en.json') },
+    { src: path.join(I18N_DIRECTORY, 'zh-cn.json'), dest: path.join(MEDIA_DIRECTORY, 'zh-cn.json') },
+    { src: I18NEXT_FILE, dest: path.join(MEDIA_DIRECTORY, 'i18next.min.js') }
+];
+
+filesToCopy.forEach(file => {
+    try {
+        fs.copyFileSync(file.src, file.dest);
+        console.log(`Copied ${file.src} to ${file.dest}`);
+    } catch (err) {
+        console.error(`Error copying ${file.src} to ${file.dest}:`, err);
+    }
+});
 
 // Determine the JS files to be packaged. The order is: utils.ts, *.ts, and then main.ts
 let packageJsFiles = [path.join(MEDIA_DIRECTORY, UTILS_JS_FILE)];

@@ -1,0 +1,16 @@
+{
+    "Unable to load Git Graph": "Unable to load Git Graph",
+    "Branches": "Branches",
+    "Show Remote Branches": "Show Remote Branches",
+    "Find": "Find",
+    "Open a Terminal for this Repository": "Open a Terminal for this Repository",
+    "Repository Settings": "Repository Settings",
+    "Description": "Description",
+    "Date": "Date",
+    "Author": "Author",
+    "Repo": "Repo",
+    "Commit": "Commit",
+    "Rename Branch": "Rename Branch",
+    "Delete Remote Branch": "Delete Remote Branch",
+    "Graph": "Graph"
+}

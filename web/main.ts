@@ -1,3 +1,5 @@
+declare const i18next: any;
+const t = i18next.t;
 class GitGraphView {
 	private gitRepos: GG.GitRepoSet;
 	private gitBranches: ReadonlyArray<string> = [];
@@ -818,10 +820,10 @@ class GitGraphView {
 			markdown: this.config.markdown
 		});
 
-		let html = '<tr id="tableColHeaders"><th id="tableHeaderGraphCol" class="tableColHeader" data-col="0">Graph</th><th class="tableColHeader" data-col="1">Description</th>' +
-			(colVisibility.date ? '<th class="tableColHeader dateCol" data-col="2">Date</th>' : '') +
-			(colVisibility.author ? '<th class="tableColHeader authorCol" data-col="3">Author</th>' : '') +
-			(colVisibility.commit ? '<th class="tableColHeader" data-col="4">Commit</th>' : '') +
+		let html = `<tr id="tableColHeaders"><th id="tableHeaderGraphCol" class="tableColHeader" data-col="0">${t('Graph')}</th><th class="tableColHeader" data-col="1">${t('Description')}</th>` +
+			(colVisibility.date ? `<th class="tableColHeader dateCol" data-col="2">${t('Date')}</th>` : '') +
+			(colVisibility.author ? `<th class="tableColHeader authorCol" data-col="3">${t('Author')}</th>` : '') +
+			(colVisibility.commit ? `<th class="tableColHeader" data-col="4">${t('Commit')}</th>` : '') +
 			'</tr>';
 
 		for (let i = 0; i < this.commits.length; i++) {
@@ -977,7 +979,7 @@ class GitGraphView {
 				visible: visibility.checkout && this.gitBranchHead !== refName,
 				onClick: () => this.checkoutBranchAction(refName, null, null, target)
 			}, {
-				title: 'Rename Branch' + ELLIPSIS,
+				title: t('Rename Branch') + ELLIPSIS,
 				visible: visibility.rename,
 				onClick: () => {
 					dialog.showRefInput('Enter the new name for branch <b><i>' + escapeHtml(refName) + '</i></b>:', refName, 'Rename Branch', (newName) => {
@@ -1247,7 +1249,7 @@ class GitGraphView {
 				visible: visibility.checkout,
 				onClick: () => this.checkoutBranchAction(refName, remote, null, target)
 			}, {
-				title: 'Delete Remote Branch' + ELLIPSIS,
+				title: t('Delete Remote Branch') + ELLIPSIS,
 				visible: visibility.delete && remote !== '',
 				onClick: () => {
 					dialog.showConfirmation('Are you sure you want to delete the remote branch <b><i>' + escapeHtml(refName) + '</i></b>?', 'Yes, delete', () => {
@@ -2557,9 +2559,9 @@ class GitGraphView {
 						}).join(', ')
 						: 'None';
 					html += '<span class="cdvSummaryTop' + (expandedCommit.avatar !== null ? ' withAvatar' : '') + '"><span class="cdvSummaryTopRow"><span class="cdvSummaryKeyValues">'
-						+ '<b>Commit: </b>' + escapeHtml(commitDetails.hash) + '<br>'
+						+ `<b>${t('Commit')}: </b>` + escapeHtml(commitDetails.hash) + '<br>'
 						+ '<b>Parents: </b>' + parents + '<br>'
-						+ '<b>Author: </b>' + escapeHtml(commitDetails.author) + (commitDetails.authorEmail !== '' ? ' &lt;<a class="' + CLASS_EXTERNAL_URL + '" href="mailto:' + escapeHtml(commitDetails.authorEmail) + '" tabindex="-1">' + escapeHtml(commitDetails.authorEmail) + '</a>&gt;' : '') + '<br>'
+						+ `<b>${t('Author')}: </b>` + escapeHtml(commitDetails.author) + (commitDetails.authorEmail !== '' ? ' &lt;<a class="' + CLASS_EXTERNAL_URL + '" href="mailto:' + escapeHtml(commitDetails.authorEmail) + '" tabindex="-1">' + escapeHtml(commitDetails.authorEmail) + '</a>&gt;' : '') + '<br>'
 						+ (commitDetails.authorDate !== commitDetails.committerDate ? '<b>Author Date: </b>' + formatLongDate(commitDetails.authorDate) + '<br>' : '')
 						+ '<b>Committer: </b>' + escapeHtml(commitDetails.committer) + (commitDetails.committerEmail !== '' ? ' &lt;<a class="' + CLASS_EXTERNAL_URL + '" href="mailto:' + escapeHtml(commitDetails.committerEmail) + '" tabindex="-1">' + escapeHtml(commitDetails.committerEmail) + '</a>&gt;' : '') + (commitDetails.signature !== null ? generateSignatureHtml(commitDetails.signature) : '') + '<br>'
 						+ '<b>' + (commitDetails.authorDate !== commitDetails.committerDate ? 'Committer ' : '') + 'Date: </b>' + formatLongDate(commitDetails.committerDate)

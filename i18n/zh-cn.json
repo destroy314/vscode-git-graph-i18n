@@ -1,0 +1,16 @@
+{
+    "Unable to load Git Graph": "无法加载 Git 图表",
+    "Branches": "分支",
+    "Show Remote Branches": "显示远程分支",
+    "Find": "查找",
+    "Open a Terminal for this Repository": "为该仓库打开终端",
+    "Repository Settings": "仓库设置",
+    "Description": "描述",
+    "Date": "日期",
+    "Author": "作者",
+    "Repo": "仓库",
+    "Commit": "提交",
+    "Rename Branch": "重命名分支",
+    "Delete Remote Branch": "删除远程分支",
+    "Graph": "图表"
+}
